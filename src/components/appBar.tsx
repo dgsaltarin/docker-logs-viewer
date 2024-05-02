@@ -1,27 +1,42 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+} from "@material-ui/core";
+import { Brightness4 } from "@material-ui/icons";
 
-export default function ButtonAppBar() {
+const useStyles = makeStyles({
+  brandText: {},
+  appBarItemsRight: {
+    marginLeft: "auto",
+    marginRight: 0,
+  },
+  appBarShift: {
+    width: `calc(100% - 200px)`,
+  },
+});
+export default function AppHeader() {
+  const classes = useStyles();
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+    <AppBar position="fixed" className={classes.appBarShift}>
+      <Toolbar>
+        <Typography className={classes.brandText}>Branding</Typography>
+
+        <Box className={classes.appBarItemsRight}>
           <IconButton
-            size="large"
-            edge="start"
             color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+            aria-label="toggle dark mode"
+            edge="start"
           >
-            <MenuIcon />
+            <Brightness4 />
           </IconButton>
-          <Button color="inherit">Logout</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+          {/* {renderAppBarUserMenu} */}
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
