@@ -6,7 +6,7 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
-import { Brightness4 } from "@material-ui/icons";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const useStyles = makeStyles({
   brandText: {},
@@ -24,7 +24,7 @@ export default function AppHeader() {
   return (
     <AppBar position="fixed" className={classes.appBarShift}>
       <Toolbar>
-        <Typography className={classes.brandText}>Branding</Typography>
+        <Typography className={classes.brandText}>Devops Monitor</Typography>
 
         <Box className={classes.appBarItemsRight}>
           <IconButton
@@ -32,7 +32,7 @@ export default function AppHeader() {
             aria-label="toggle dark mode"
             edge="start"
           >
-            <Brightness4 />
+            <LogoutIcon />
           </IconButton>
           {/* {renderAppBarUserMenu} */}
         </Box>
