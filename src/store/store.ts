@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import containerSlice from "./slices/containerSlice";
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    container: containerSlice,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

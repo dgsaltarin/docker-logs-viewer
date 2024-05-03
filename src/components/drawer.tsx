@@ -17,18 +17,22 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ContainerList from "./containerList";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getContainersList } from "../store/slices/containerSlice";
+import { AppDispatch } from "../store/store";
 
 const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const dispatch = useDispatch<AppDispatch>();
-  const { containers } = useSelector((state: any) => state.containers);
+  const { containers } = useSelector((state: any) => state.container);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
   useEffect(() => {
-    dispatch(getContainers());
-  }
+    dispatch(getContainersList());
+  });
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -154,7 +158,7 @@ export default function ResponsiveDrawer() {
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
         </Typography>
-        <ContainerList />
+        <ContainerList containers={containers} />
       </Box>
     </Box>
   );
