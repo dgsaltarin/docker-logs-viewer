@@ -21,8 +21,14 @@ import LogoutIcon from "@mui/icons-material/Logout";
 const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { containers } = useSelector((state: any) => state.containers);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(getContainers());
+  }
 
   const handleDrawerClose = () => {
     setIsClosing(true);
