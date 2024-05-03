@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <div>
-        <Grid container spacing={4}>
-          <Grid xs={12}>
+        <Grid>
+          <Grid>
             <ResponsiveDrawer />
           </Grid>
         </Grid>

@@ -1,11 +1,11 @@
 import { styled } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { FC } from "react";
 import { Container } from "../models/models";
+import ContainerCard from "./containerCard";
 
 const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -22,7 +22,7 @@ const ContainerList: FC<{ containers: Container[] }> = ({ containers }) => {
           <List>
             {containers.map((container: Container) => (
               <ListItem>
-                <ListItemText primary={container.name} />
+                <ContainerCard name={container.name} id={container.id} />
               </ListItem>
             ))}
           </List>

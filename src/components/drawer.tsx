@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getContainerList } from "../store/slices/containerSlice";
 import { AppDispatch } from "../store/store";
+import { FaDocker } from "react-icons/fa";
 
 const drawerWidth = 240;
 
@@ -31,9 +32,8 @@ export default function ResponsiveDrawer() {
   const [isClosing, setIsClosing] = React.useState(false);
 
   useEffect(() => {
-    console.log("useEffect");
     dispatch(getContainerList());
-  });
+  }, [dispatch]);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -59,7 +59,7 @@ export default function ResponsiveDrawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <FaDocker /> : <FaDocker />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -144,7 +144,7 @@ export default function ResponsiveDrawer() {
         }}
       >
         <Toolbar />
-        <ContainerList containers={containers.containers} />
+        <ContainerList containers={containers} />
       </Box>
     </Box>
   );

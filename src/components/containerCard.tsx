@@ -1,4 +1,3 @@
-import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -15,10 +14,10 @@ const Item = styled(Paper)(({ theme }) => ({
 const darkTheme = createTheme({ palette: { mode: "dark" } });
 const lightTheme = createTheme({ palette: { mode: "light" } });
 
-export default function Elevation() {
+const ContainerCard: FC<{ name: string; id: number }> = ({ name, id }) => {
   return (
     <Grid container spacing={2}>
-      {[lightTheme, darkTheme].map((theme, index) => (
+      {[lightTheme].map((theme, index) => (
         <Grid item xs={6} key={index}>
           <ThemeProvider theme={theme}>
             <Box
@@ -27,19 +26,20 @@ export default function Elevation() {
                 borderRadius: 2,
                 bgcolor: "background.default",
                 display: "grid",
-                gridTemplateColumns: { md: "1fr 1fr" },
+                gridTemplateColumns: { md: "1fr 2fr" },
                 gap: 2,
               }}
             >
-              {[0, 1, 2, 3, 4, 6, 8, 12, 16, 24].map((elevation) => (
-                <Item key={elevation} elevation={elevation}>
-                  {`elevation=${elevation}`}
-                </Item>
-              ))}
+              <Item elevation={4}>
+                {`${name}`}
+                {`${id}`}
+              </Item>
             </Box>
           </ThemeProvider>
         </Grid>
       ))}
     </Grid>
   );
-}
+};
+
+export default ContainerCard;

@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getContainers } from "../../api/index";
+import { getDevContainers } from "../../api/index";
 import { Container } from "../../models/models";
 import ContainerSliceProps from "../../models/slices/containerSlice";
 
 export const getContainerList = createAsyncThunk(
   "container/getContainerList",
   async () => {
-    const containerList: Container[] = await getContainers();
+    const containerList: Container[] = await getDevContainers();
     return containerList;
   },
 );
