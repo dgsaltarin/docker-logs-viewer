@@ -14,15 +14,12 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: 0,
   },
-  appBarShift: {
-    width: `calc(100% - 200px)`,
-  },
 });
 export default function AppHeader() {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" className={classes.appBarShift}>
+    <AppBar position="fixed">
       <Toolbar>
         <Typography className={classes.brandText}>Devops Monitor</Typography>
 

@@ -18,12 +18,12 @@ const Demo = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
-export default function InteractiveList() {
+export default function ContainerList() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={24}>
       <Grid item xs={12} md={6}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-          Text only
+          Containers
         </Typography>
         <Demo>
           <List>
