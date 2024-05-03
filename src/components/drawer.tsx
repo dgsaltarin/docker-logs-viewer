@@ -5,14 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ContainerList from "./containerList";
@@ -22,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getContainerList } from "../store/slices/containerSlice";
 import { AppDispatch } from "../store/store";
 import { FaDocker } from "react-icons/fa";
+import { ListSubheader } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -54,6 +52,11 @@ export default function ResponsiveDrawer() {
     <div>
       <Toolbar />
       <Divider />
+      <ListSubheader>
+        <Typography variant="h6" component="div">
+          Nodes
+        </Typography>
+      </ListSubheader>
       <List>
         {["DEV", "QA"].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -66,6 +69,7 @@ export default function ResponsiveDrawer() {
           </ListItem>
         ))}
       </List>
+      <Divider />
     </div>
   );
 
@@ -79,20 +83,25 @@ export default function ResponsiveDrawer() {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            ></IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Devops Monitor
+            </Typography>
+          </div>
           <IconButton
+            style={{ marginTop: 4 }}
             color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            aria-label="toggle dark mode"
+            edge="end"
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Devops Monitor
-          </Typography>
-          <IconButton color="inherit" aria-label="toggle dark mode" edge="end">
             <LogoutIcon />
           </IconButton>
         </Toolbar>
@@ -141,10 +150,14 @@ export default function ResponsiveDrawer() {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Toolbar />
-        <ContainerList containers={containers} />
+        <div style={{ flexGrow: 1 }}>
+          <ContainerList containers={containers} />
+        </div>
       </Box>
     </Box>
   );
