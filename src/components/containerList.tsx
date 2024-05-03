@@ -20,8 +20,8 @@ const ContainerList: FC<{ containers: Container[] }> = ({ containers }) => {
         </Typography>
         <Demo>
           <List>
-            {containers.map((container, index) => (
-              <ListItem key={index}>
+            {containers.map((container: Container) => (
+              <ListItem>
                 <ListItemText primary={container.name} />
               </ListItem>
             ))}

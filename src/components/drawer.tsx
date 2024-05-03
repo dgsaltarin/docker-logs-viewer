@@ -19,7 +19,7 @@ import ContainerList from "./containerList";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getContainersList } from "../store/slices/containerSlice";
+import { getContainerList } from "../store/slices/containerSlice";
 import { AppDispatch } from "../store/store";
 
 const drawerWidth = 240;
@@ -31,7 +31,8 @@ export default function ResponsiveDrawer() {
   const [isClosing, setIsClosing] = React.useState(false);
 
   useEffect(() => {
-    dispatch(getContainersList());
+    console.log("useEffect");
+    dispatch(getContainerList());
   });
 
   const handleDrawerClose = () => {
@@ -143,22 +144,7 @@ export default function ResponsiveDrawer() {
         }}
       >
         <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <ContainerList containers={containers} />
+        <ContainerList containers={containers.containers} />
       </Box>
     </Box>
   );

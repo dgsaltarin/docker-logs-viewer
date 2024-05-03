@@ -3,21 +3,21 @@ import { getContainers } from "../../api/index";
 import { Container } from "../../models/models";
 import ContainerSliceProps from "../../models/slices/containerSlice";
 
-export const getContainersList = createAsyncThunk(
-  "containers/getContainers",
+export const getContainerList = createAsyncThunk(
+  "container/getContainerList",
   async () => {
     const containerList: Container[] = await getContainers();
     return containerList;
   },
 );
 
-const initialState = {
-  containers: [],
+const initialState: ContainerSliceProps = {
+  containers: [] as Container[],
   loading: false,
 };
 
 const containerSlice = createSlice({
-  name: "containers",
+  name: "container",
   initialState,
   reducers: {
     setContainers: (
@@ -28,22 +28,19 @@ const containerSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getContainersList.pending, (state: ContainerSliceProps) => {
+    builder.addCase(getContainerList.pending, (state: ContainerSliceProps) => {
       state.loading = true;
     });
     builder.addCase(
-      getContainersList.fulfilled,
+      getContainerList.fulfilled,
       (state: ContainerSliceProps, action: { payload: Container[] }) => {
         state.loading = false;
         state.containers = action.payload;
       },
     );
-    builder.addCase(
-      getContainersList.rejected,
-      (state: ContainerSliceProps) => {
-        state.loading = false;
-      },
-    );
+    builder.addCase(getContainerList.rejected, (state: ContainerSliceProps) => {
+      state.loading = false;
+    });
   },
 });
 
