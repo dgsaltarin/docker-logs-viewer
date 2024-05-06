@@ -13,8 +13,8 @@ const Demo = styled("div")(({ theme }) => ({
 
 const ContainerList: FC<{ containers: Container[] }> = ({ containers }) => {
   return (
-    <Grid container spacing={24}>
-      <Grid item xs={12} md={6}>
+    <Grid container spacing={32}>
+      <Grid item xs={24} md={2}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
           Containers
         </Typography>

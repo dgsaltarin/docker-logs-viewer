@@ -16,7 +16,10 @@ import ContainerList from "./containerList";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getContainerList } from "../store/slices/containerSlice";
+import {
+  getDevContainerList,
+  getQaContainerList,
+} from "../store/slices/containerSlice";
 import { AppDispatch } from "../store/store";
 import { FaDocker } from "react-icons/fa";
 import { ListSubheader } from "@mui/material";
@@ -30,7 +33,7 @@ export default function ResponsiveDrawer() {
   const [isClosing, setIsClosing] = React.useState(false);
 
   useEffect(() => {
-    dispatch(getContainerList());
+    dispatch(getDevContainerList());
   }, [dispatch]);
 
   const handleDrawerClose = () => {
@@ -48,6 +51,14 @@ export default function ResponsiveDrawer() {
     }
   };
 
+  const handleQaContainerList = () => {
+    dispatch(getQaContainerList());
+  };
+
+  const handleDevContainerList = () => {
+    dispatch(getDevContainerList());
+  };
+
   const drawer = (
     <div>
       <Toolbar />
@@ -58,18 +69,23 @@ export default function ResponsiveDrawer() {
         </Typography>
       </ListSubheader>
       <List>
-        {["DEV", "QA"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <FaDocker /> : <FaDocker />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem key={"DEV"} disablePadding>
+          <ListItemButton onClick={handleDevContainerList}>
+            <ListItemIcon>
+              <FaDocker />
+            </ListItemIcon>
+            <ListItemText primary={"DEV"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key={"QA"} disablePadding>
+          <ListItemButton onClick={handleQaContainerList}>
+            <ListItemIcon>
+              <FaDocker />
+            </ListItemIcon>
+            <ListItemText primary={"QA"} />
+          </ListItemButton>
+        </ListItem>
       </List>
-      <Divider />
     </div>
   );
 

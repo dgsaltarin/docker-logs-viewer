@@ -1,45 +1,34 @@
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import * as React from "react";
 import Box from "@mui/material/Box";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-  height: 60,
-  lineHeight: "60px",
-}));
-
-const darkTheme = createTheme({ palette: { mode: "dark" } });
-const lightTheme = createTheme({ palette: { mode: "light" } });
-
-const ContainerCard: FC<{ name: string; id: number }> = ({ name, id }) => {
-  return (
-    <Grid container spacing={2}>
-      {[lightTheme].map((theme, index) => (
-        <Grid item xs={6} key={index}>
-          <ThemeProvider theme={theme}>
-            <Box
-              sx={{
-                p: 2,
-                borderRadius: 2,
-                bgcolor: "background.default",
-                display: "grid",
-                gridTemplateColumns: { md: "1fr 2fr" },
-                gap: 2,
-              }}
-            >
-              <Item elevation={4}>
-                {`${name}`}
-                {`${id}`}
-              </Item>
-            </Box>
-          </ThemeProvider>
-        </Grid>
-      ))}
-    </Grid>
+export default function OutlinedCard({ name, id }) {
+  const card = (
+    <React.Fragment>
+      <CardContent>
+        <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
+          Container name:
+        </Typography>
+        <Typography variant="h5" component="div">
+          {name}
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          ID: {id}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">View Logs</Button>
+      </CardActions>
+    </React.Fragment>
   );
-};
 
-export default ContainerCard;
+  return (
+    <Box sx={{ minWidth: 660 }}>
+      <Card variant="outlined">{card}</Card>
+    </Box>
+  );
+}

@@ -1,12 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDevContainers } from "../../api/index";
+import { getDevContainers, getQAContainers } from "../../api/index";
 import { Container } from "../../models/models";
 import ContainerSliceProps from "../../models/slices/containerSlice";
 
-export const getContainerList = createAsyncThunk(
-  "container/getContainerList",
+export const getDevContainerList = createAsyncThunk(
+  "container/getDevContainerList",
   async () => {
     const containerList: Container[] = await getDevContainers();
+    return containerList;
+  },
+);
+
+export const getQaContainerList = createAsyncThunk(
+  "container/getQaContainerList",
+  async () => {
+    const containerList: Container[] = await getQAContainers();
     return containerList;
   },
 );
@@ -28,19 +36,44 @@ const containerSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getContainerList.pending, (state: ContainerSliceProps) => {
-      state.loading = true;
-    });
     builder.addCase(
-      getContainerList.fulfilled,
+      getDevContainerList.pending,
+      (state: ContainerSliceProps) => {
+        state.loading = true;
+      },
+    );
+    builder.addCase(
+      getDevContainerList.fulfilled,
       (state: ContainerSliceProps, action: { payload: Container[] }) => {
         state.loading = false;
         state.containers = action.payload;
       },
     );
-    builder.addCase(getContainerList.rejected, (state: ContainerSliceProps) => {
-      state.loading = false;
-    });
+    builder.addCase(
+      getDevContainerList.rejected,
+      (state: ContainerSliceProps) => {
+        state.loading = false;
+      },
+    );
+    builder.addCase(
+      getQaContainerList.pending,
+      (state: ContainerSliceProps) => {
+        state.loading = true;
+      },
+    );
+    builder.addCase(
+      getQaContainerList.fulfilled,
+      (state: ContainerSliceProps, action: { payload: Container[] }) => {
+        state.loading = false;
+        state.containers = action.payload;
+      },
+    );
+    builder.addCase(
+      getQaContainerList.rejected,
+      (state: ContainerSliceProps) => {
+        state.loading = false;
+      },
+    );
   },
 });
 
