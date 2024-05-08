@@ -22,6 +22,7 @@ export const getQaContainerList = createAsyncThunk(
 const initialState: ContainerSliceProps = {
   containers: [] as Container[],
   loading: false,
+  currentEnvironment: "dev",
 };
 
 const containerSlice = createSlice({

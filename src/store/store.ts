@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import containerSlice from "./slices/containerSlice";
+import navigationSlice from "./slices/navigationSlice";
 
 const store = configureStore({
   reducer: {
     container: containerSlice,
+    navigation: navigationSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

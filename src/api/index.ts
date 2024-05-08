@@ -21,12 +21,12 @@ export const getDevContainerLogs = async (containerName: string) => {
   const response: AxiosResponse = await axios.get(
     `${BASE_URL_DEV}/ecs_app/view_logs/${containerName}`,
   );
-  return response.data;
+  return response.data.logs;
 };
 
 export const getQAContainerLogs = async (containerName: string) => {
   const response: AxiosResponse = await axios.get(
     `${BASE_URL_QA}/ecs_app/view_logs/${containerName}`,
   );
-  return response.data;
+  return response.data.logs;
 };

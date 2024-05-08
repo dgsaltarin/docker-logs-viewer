@@ -23,6 +23,7 @@ import {
 import { AppDispatch } from "../store/store";
 import { FaDocker } from "react-icons/fa";
 import { ListSubheader } from "@mui/material";
+import LogsDetail from "./logDetail";
 
 const drawerWidth = 240;
 
@@ -31,6 +32,7 @@ export default function ResponsiveDrawer() {
   const { containers } = useSelector((state: any) => state.container);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const { currentScreen } = useSelector((state: any) => state.navigation);
 
   useEffect(() => {
     dispatch(getDevContainerList());
@@ -172,7 +174,8 @@ export default function ResponsiveDrawer() {
       >
         <Toolbar />
         <div style={{ flexGrow: 1 }}>
-          <ContainerList containers={containers} />
+          {currentScreen === "logs" && <LogsDetail />}
+          {currentScreen === "/" && <ContainerList containers={containers} />}
         </div>
       </Box>
     </Box>

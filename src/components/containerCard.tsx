@@ -5,8 +5,17 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
+import { getDevContainerLog } from "../store/slices/logSlice";
 
 export default function OutlinedCard({ name, id }) {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleGetLogs = () => {
+    dispatch(getDevContainerLog(name));
+  };
+
   const card = (
     <React.Fragment>
       <CardContent>
