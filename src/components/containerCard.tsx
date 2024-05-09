@@ -8,12 +8,14 @@ import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import { getDevContainerLog } from "../store/slices/logSlice";
+import { setCurrentScreen } from "../store/slices/navigationSlice";
 
 export default function OutlinedCard({ name, id }) {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleGetLogs = () => {
     dispatch(getDevContainerLog(name));
+    dispatch(setCurrentScreen("/logs"));
   };
 
   const card = (
@@ -30,7 +32,9 @@ export default function OutlinedCard({ name, id }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View Logs</Button>
+        <Button size="small" onClick={handleGetLogs}>
+          View Logs
+        </Button>
       </CardActions>
     </React.Fragment>
   );

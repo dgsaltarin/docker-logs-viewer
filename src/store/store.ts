@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import containerSlice from "./slices/containerSlice";
 import navigationSlice from "./slices/navigationSlice";
+import logSlice from "./slices/logSlice";
 
 const store = configureStore({
   reducer: {
     container: containerSlice,
     navigation: navigationSlice,
+    log: logSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

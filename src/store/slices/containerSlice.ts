@@ -35,6 +35,12 @@ const containerSlice = createSlice({
     ) => {
       state.containers = action.payload;
     },
+    setCurrentEnvironment: (
+      state: ContainerSliceProps,
+      action: { payload: string },
+    ) => {
+      state.currentEnvironment = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
@@ -78,6 +84,6 @@ const containerSlice = createSlice({
   },
 });
 
-export const { setContainers } = containerSlice.actions;
+export const { setContainers, setCurrentEnvironment } = containerSlice.actions;
 
 export default containerSlice.reducer;

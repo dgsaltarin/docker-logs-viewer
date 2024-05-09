@@ -19,11 +19,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getDevContainerList,
   getQaContainerList,
+  setCurrentEnvironment,
 } from "../store/slices/containerSlice";
 import { AppDispatch } from "../store/store";
 import { FaDocker } from "react-icons/fa";
 import { ListSubheader } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import LogsDetail from "./logDetail";
+import { setCurrentScreen } from "../store/slices/navigationSlice";
+
+const style = makeStyles(() => ({
+  customAppBar: {
+    backgroundColor: "#051b52",
+  },
+}));
 
 const drawerWidth = 240;
 
@@ -33,6 +42,7 @@ export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const { currentScreen } = useSelector((state: any) => state.navigation);
+  const classes = style();
 
   useEffect(() => {
     dispatch(getDevContainerList());
@@ -55,10 +65,14 @@ export default function ResponsiveDrawer() {
 
   const handleQaContainerList = () => {
     dispatch(getQaContainerList());
+    dispatch(setCurrentScreen("/"));
+    dispatch(setCurrentEnvironment("qa"));
   };
 
   const handleDevContainerList = () => {
     dispatch(getDevContainerList());
+    dispatch(setCurrentScreen("/"));
+    dispatch(setCurrentEnvironment("dev"));
   };
 
   const drawer = (
@@ -101,7 +115,13 @@ export default function ResponsiveDrawer() {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar
+          className={classes.customAppBar}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
           <div>
             <IconButton
               color="inherit"
@@ -174,7 +194,7 @@ export default function ResponsiveDrawer() {
       >
         <Toolbar />
         <div style={{ flexGrow: 1 }}>
-          {currentScreen === "logs" && <LogsDetail />}
+          {currentScreen === "/logs" && <LogsDetail />}
           {currentScreen === "/" && <ContainerList containers={containers} />}
         </div>
       </Box>

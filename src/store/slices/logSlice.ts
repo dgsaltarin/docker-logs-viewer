@@ -6,7 +6,7 @@ import { LogSliceProps } from "../../models/slices/logSliceProps";
 export const getDevContainerLog = createAsyncThunk(
   "container/getDevContainerLogs",
   async (containerName: string) => {
-    const response = await getDevContainerLogs(containerName);
+    const response: string = await getDevContainerLogs(containerName);
     return response;
   },
 );
@@ -14,15 +14,13 @@ export const getDevContainerLog = createAsyncThunk(
 export const getQaContainerLog = createAsyncThunk(
   "container/getQaContainerLogs",
   async (containerName: string) => {
-    const response = await getQAContainerLogs(containerName);
+    const response: string = await getQAContainerLogs(containerName);
     return response;
   },
 );
 
 const initialState: LogSliceProps = {
-  logs: {
-    logs: "",
-  } as Log,
+  logs: "",
   loading: false,
 };
 
@@ -30,7 +28,7 @@ const logSlice = createSlice({
   name: "log",
   initialState: initialState,
   reducers: {
-    setLogs: (state: LogSliceProps, action: { payload: Log }) => {
+    setLogs: (state: LogSliceProps, action: { payload: string }) => {
       state.logs = action.payload;
     },
   },
@@ -40,7 +38,7 @@ const logSlice = createSlice({
     });
     builder.addCase(
       getDevContainerLog.fulfilled,
-      (state: LogSliceProps, action: { payload: Log }) => {
+      (state: LogSliceProps, action: { payload: string }) => {
         state.loading = false;
         state.logs = action.payload;
       },
@@ -53,7 +51,7 @@ const logSlice = createSlice({
     });
     builder.addCase(
       getQaContainerLog.fulfilled,
-      (state: LogSliceProps, action: { payload: Log }) => {
+      (state: LogSliceProps, action: { payload: string }) => {
         state.loading = false;
         state.logs = action.payload;
       },
