@@ -25,17 +25,20 @@ function LogsDetail() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item className={classes.returnButton} xs={42} md={12} lg={12}>
+      <Grid item className={classes.returnButton} xs={2} md={12} lg={12}>
         <IconButton onClick={returnToList}>
           <KeyboardReturnIcon />
         </IconButton>
       </Grid>
       <Grid item xs={2} md={12}>
-        <Paper elevation={3} style={{ padding: 2, overflow: "auto" }}>
+        <Paper
+          elevation={3}
+          style={{ padding: 2, overflow: "auto", width: "100%" }}
+        >
           <Typography
             variant="body2"
             component="pre"
-            style={{ whiteSpace: "pre-wrap", textAlign: "left" }}
+            style={{ whiteSpace: "pre-wrap", textAlign: "left", width: "100%" }}
           >
             {logs}
           </Typography>

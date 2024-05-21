@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from "axios";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const BASE_URL_DEV = "https://monitor.farmuhub.co";
 const BASE_URL_QA = "https://qa.monitor.farmuhub.co";
@@ -29,4 +31,14 @@ export const getQAContainerLogs = async (containerName: string) => {
     `${BASE_URL_QA}/ecs_app/view_logs/${containerName}`,
   );
   return response.data.logs;
+};
+
+export const loginFirebase = async (email: string, password: string) => {
+  const auth = getAuth();
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    return error;
+  }
 };

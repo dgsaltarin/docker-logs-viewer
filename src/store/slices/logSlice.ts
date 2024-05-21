@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getDevContainerLogs, getQAContainerLogs } from "../../api/index";
-import { Log } from "../../models/models";
-import { LogSliceProps } from "../../models/slices/logSliceProps";
 
 export const getDevContainerLog = createAsyncThunk(
   "container/getDevContainerLogs",
@@ -34,6 +32,7 @@ const logSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getDevContainerLog.pending, (state: LogSliceProps) => {
+      state.logs = "";
       state.loading = true;
     });
     builder.addCase(
@@ -45,6 +44,7 @@ const logSlice = createSlice({
     );
     builder.addCase(getDevContainerLog.rejected, (state: LogSliceProps) => {
       state.loading = false;
+      state.logs = "";
     });
     builder.addCase(getQaContainerLog.pending, (state: LogSliceProps) => {
       state.loading = true;
