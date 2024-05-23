@@ -6,3 +6,8 @@ export interface Container {
 export interface Log {
   logs: string;
 }
+
+export interface User {
+  email: string;
+  password: string;
+}

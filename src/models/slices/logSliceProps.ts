@@ -1,6 +1,6 @@
-import { Log } from "../models";
-
-export interface LogSliceProps {
+interface LogSliceProps {
   logs: string;
   loading: boolean;
 }
+
+export default LogSliceProps;

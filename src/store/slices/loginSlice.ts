@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginFirebase } from "../../api";
-
-interface loginSliceProps {
-  email: string;
-  password: string;
-  loading: boolean;
-}
+import { LoginSliceProps } from "../../models/slices/loginSlicePros";
 
 interface userProps {
   email: string;
@@ -20,36 +15,40 @@ export const login = createAsyncThunk(
   },
 );
 
-const initialState: loginSliceProps = {
+const initialState: LoginSliceProps = {
   email: "",
   password: "",
   loading: false,
+  isLoggesIn: false,
 };
 
 const loginSlice = createSlice({
   name: "login",
   initialState: initialState,
   reducers: {
-    setEmail: (state: loginSliceProps, action: { payload: string }) => {
+    setEmail: (state: LoginSliceProps, action: { payload: string }) => {
       state.email = action.payload;
     },
-    setPassword: (state: loginSliceProps, action: { payload: string }) => {
+    setPassword: (state: LoginSliceProps, action: { payload: string }) => {
       state.password = action.payload;
+    },
+    logout: (state: LoginSliceProps) => {
+      state.isLoggesIn = false;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(login.pending, (state: loginSliceProps) => {
+    builder.addCase(login.pending, (state: LoginSliceProps) => {
       state.loading = true;
     });
-    builder.addCase(login.fulfilled, (state: loginSliceProps) => {
+    builder.addCase(login.fulfilled, (state: LoginSliceProps) => {
       state.loading = false;
     });
-    builder.addCase(login.rejected, (state: loginSliceProps) => {
+    builder.addCase(login.rejected, (state: LoginSliceProps) => {
       state.loading = false;
     });
   },
 });
 
-export const { setEmail, setPassword } = loginSlice.actions;
+export const { setEmail, setPassword, logout } = loginSlice.actions;
 
 export default loginSlice.reducer;
