@@ -19,7 +19,7 @@ const initialState: LoginSliceProps = {
   email: "",
   password: "",
   loading: false,
-  isLoggesIn: false,
+  isLoggedIn: false,
 };
 
 const loginSlice = createSlice({
@@ -33,7 +33,7 @@ const loginSlice = createSlice({
       state.password = action.payload;
     },
     logout: (state: LoginSliceProps) => {
-      state.isLoggesIn = false;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {
@@ -42,6 +42,7 @@ const loginSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state: LoginSliceProps) => {
       state.loading = false;
+      state.isLoggedIn = true;
     });
     builder.addCase(login.rejected, (state: LoginSliceProps) => {
       state.loading = false;

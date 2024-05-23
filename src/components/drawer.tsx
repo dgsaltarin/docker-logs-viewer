@@ -27,6 +27,8 @@ import { ListSubheader } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import LogsDetail from "./logDetail";
 import { setCurrentScreen } from "../store/slices/navigationSlice";
+import { logout } from "../store/slices/loginSlice";
+import { RootState } from "../store/store";
 
 const style = makeStyles(() => ({
   customAppBar: {
@@ -38,10 +40,10 @@ const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const dispatch = useDispatch<AppDispatch>();
-  const { containers } = useSelector((state: any) => state.container);
+  const { containers } = useSelector((state: RootState) => state.container);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
-  const { currentScreen } = useSelector((state: any) => state.navigation);
+  const { currentScreen } = useSelector((state: RootState) => state.navigation);
   const classes = style();
 
   useEffect(() => {
@@ -63,6 +65,8 @@ export default function ResponsiveDrawer() {
     }
   };
 
+  // handleQaContainerList and handleDevContainerList are functions that dispatch
+  // actions to get the container list for the QA and DEV environments, respectively.
   const handleQaContainerList = () => {
     dispatch(getQaContainerList());
     dispatch(setCurrentScreen("/"));
@@ -73,6 +77,11 @@ export default function ResponsiveDrawer() {
     dispatch(getDevContainerList());
     dispatch(setCurrentScreen("/"));
     dispatch(setCurrentEnvironment("dev"));
+  };
+
+  // handleLogout is a function that dispatches an action to log out the user.
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   const drawer = (
@@ -139,6 +148,7 @@ export default function ResponsiveDrawer() {
             color="inherit"
             aria-label="toggle dark mode"
             edge="end"
+            onClick={handleLogout}
           >
             <LogoutIcon />
           </IconButton>
