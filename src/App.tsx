@@ -2,7 +2,8 @@ import firebase from "firebase/compat/app";
 import "./App.css";
 import ResponsiveDrawer from "./components/drawer";
 import Login from "./components/login";
-import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -15,13 +16,9 @@ const firebaseConfig = {
 
 function App() {
   firebase.initializeApp(firebaseConfig);
+  const { isLoggedIn } = useSelector((state: RootState) => state.login);
 
-  return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<ResponsiveDrawer />} />
-    </Routes>
-  );
+  return <>{isLoggedIn ? <ResponsiveDrawer /> : <Login />}</>;
 }
 
 export default App;

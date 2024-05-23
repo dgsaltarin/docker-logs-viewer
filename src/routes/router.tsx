@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 
 export const Router = () => (
-  const [isLoggedIn, setIsLoggedIn] = useState(login);
+  const [isLoggedIn, setIsLoggedIn] = useState(state.login);
+
   
   return (
     <Routes>
