@@ -3,6 +3,7 @@ import containerSlice from "./slices/containerSlice";
 import navigationSlice from "./slices/navigationSlice";
 import logSlice from "./slices/logSlice";
 import loginSlice from "./slices/loginSlice";
+import awsServicesSlice from "./slices/awsServicesSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     navigation: navigationSlice,
     log: logSlice,
     login: loginSlice,
+    awsServices: awsServicesSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
