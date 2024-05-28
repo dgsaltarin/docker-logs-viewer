@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import { getDevContainerLog } from "../store/slices/logSlice";
 import { setCurrentScreen } from "../store/slices/navigationSlice";
+import { Grid } from "@mui/material";
 
 export default function OutlinedCard({ name, id }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,7 +28,12 @@ export default function OutlinedCard({ name, id }) {
         <Typography variant="h5" component="div">
           {name}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography
+          sx={{ mb: 1.5 }}
+          component="pre"
+          style={{ whiteSpace: "pre-wrap", textAlign: "left", width: "100%" }}
+          color="text.secondary"
+        >
           ID: {id}
         </Typography>
       </CardContent>
@@ -40,8 +46,10 @@ export default function OutlinedCard({ name, id }) {
   );
 
   return (
-    <Box sx={{ minWidth: 660 }}>
-      <Card variant="outlined">{card}</Card>
-    </Box>
+    <Grid>
+      <Grid item xs={6} md={8} lg={12}>
+        <Card variant="outlined">{card}</Card>
+      </Grid>
+    </Grid>
   );
 }

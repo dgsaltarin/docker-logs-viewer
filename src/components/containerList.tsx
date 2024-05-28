@@ -24,12 +24,12 @@ const ContainerList: FC<{ containers: Container[] }> = ({ containers }) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item className={classes.title} xs={4} md={12}>
+      <Grid item className={classes.title} xs={12} md={12}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h4">
           Containers
         </Typography>
       </Grid>
-      <Grid item xs={4} md={12}>
+      <Grid item xs={12} md={6} lg={12}>
         <Demo>
           <List>
             {containers.map((container: Container) => (

@@ -6,6 +6,7 @@ import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
 import { setCurrentScreen } from "../store/slices/navigationSlice";
 import { AppDispatch } from "../store/store";
+import { RootState } from "../store/store";
 
 const style = makeStyles(() => ({
   returnButton: {
@@ -15,7 +16,7 @@ const style = makeStyles(() => ({
 }));
 
 function LogsDetail() {
-  const { logs } = useSelector((state: any) => state.log);
+  const { logs } = useSelector((state: RootState) => state.log);
   const classes = style();
   const dispatch = useDispatch<AppDispatch>();
 

@@ -29,6 +29,7 @@ import LogsDetail from "./logDetail";
 import { setCurrentScreen } from "../store/slices/navigationSlice";
 import { logout } from "../store/slices/loginSlice";
 import { RootState } from "../store/store";
+import { FaAws } from "react-icons/fa6";
 
 const style = makeStyles(() => ({
   customAppBar: {
@@ -110,6 +111,17 @@ export default function ResponsiveDrawer() {
             <ListItemText primary={"QA"} />
           </ListItemButton>
         </ListItem>
+        <Divider />
+        <List>
+          <ListItem key={"ECS"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <FaAws />
+              </ListItemIcon>
+              <ListItemText primary={"ECS"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
       </List>
     </div>
   );
