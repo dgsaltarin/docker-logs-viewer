@@ -1,8 +1,8 @@
 import { getServicesList, getClusterList } from "../../api";
 import { Service } from "../../models/models";
-import { AwsServices } from "../../models/slices/awsServiceSliceProps";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { awsServiceSliceProps } from "@types/slices/awsServiceSliceProps";
 
 export const getAwsServices = createAsyncThunk(
   "awsServices/getAwsServices",
@@ -15,12 +15,12 @@ export const getAwsServices = createAsyncThunk(
 export const getClusters = createAsyncThunk(
   "awsServices/getClusters",
   async () => {
-    const response = await getClusterList();
-    return response.json();
+    const response: string[] = await getClusterList();
+    return response;
   },
 );
 
-const initialState: AwsServices = {
+const initialState: awsServiceSliceProps = {
   services: [],
   loading: false,
   clusters: [],
@@ -31,30 +31,30 @@ const awsServicesSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAwsServices.pending, (state: AwsServices) => {
+    builder.addCase(getAwsServices.pending, (state: awsServiceSliceProps) => {
       state.loading = true;
     });
     builder.addCase(
       getAwsServices.fulfilled,
-      (state: AwsServices, action: { payload: Service[] }) => {
+      (state: awsServiceSliceProps, action: { payload: Service[] }) => {
         state.loading = false;
         state.services = action.payload;
       },
     );
-    builder.addCase(getAwsServices.rejected, (state: AwsServices) => {
+    builder.addCase(getAwsServices.rejected, (state: awsServiceSliceProps) => {
       state.loading = false;
     });
-    builder.addCase(getClusters.pending, (state: AwsServices) => {
+    builder.addCase(getClusters.pending, (state: awsServiceSliceProps) => {
       state.loading = true;
     });
     builder.addCase(
       getClusters.fulfilled,
-      (state: AwsServices, action: { payload: string[] }) => {
+      (state: awsServiceSliceProps, action: { payload: string[] }) => {
         state.loading = false;
         state.clusters = action.payload;
       },
     );
-    builder.addCase(getClusters.rejected, (state: AwsServices) => {
+    builder.addCase(getClusters.rejected, (state: awsServiceSliceProps) => {
       state.loading = false;
     });
   },

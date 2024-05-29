@@ -12,7 +12,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import ContainerList from "../containerList/containerList";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,16 +19,22 @@ import {
   getDevContainerList,
   getQaContainerList,
   setCurrentEnvironment,
-} from "../../store/slices/containerSlice";
-import { AppDispatch } from "../../store/store";
+} from "@store/slices/containerSlice";
+import { AppDispatch } from "@store/store";
 import { FaDocker } from "react-icons/fa";
 import { ListSubheader } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import LogsDetail from "../logDetail/logDetail";
-import { setCurrentScreen } from "../../store/slices/navigationSlice";
-import { logout } from "../../store/slices/loginSlice";
-import { RootState } from "../../store/store";
+import { setCurrentScreen } from "@store/slices/navigationSlice";
+import { logout } from "@store/slices/loginSlice";
+import { RootState } from "@store/store";
 import { FaAws } from "react-icons/fa6";
+import {
+  ClusterList,
+  ContainerList,
+  LogDetail,
+  ServiceList,
+} from "@components/index";
+import { getClusters } from "@store/slices/awsServicesSlice";
 
 const style = makeStyles(() => ({
   customAppBar: {
@@ -46,6 +51,7 @@ export default function ResponsiveDrawer() {
   const [isClosing, setIsClosing] = React.useState(false);
   const { currentScreen } = useSelector((state: RootState) => state.navigation);
   const classes = style();
+  const { clusters } = useSelector((state: RootState) => state.awsServices);
 
   useEffect(() => {
     dispatch(getDevContainerList());
@@ -78,6 +84,11 @@ export default function ResponsiveDrawer() {
     dispatch(getDevContainerList());
     dispatch(setCurrentScreen("/"));
     dispatch(setCurrentEnvironment("dev"));
+  };
+
+  const handleClusterList = () => {
+    dispatch(getClusters());
+    dispatch(setCurrentScreen("/clusters"));
   };
 
   // handleLogout is a function that dispatches an action to log out the user.
@@ -114,7 +125,7 @@ export default function ResponsiveDrawer() {
         <Divider />
         <List>
           <ListItem key={"ECS"} disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handleClusterList}>
               <ListItemIcon>
                 <FaAws />
               </ListItemIcon>
@@ -216,8 +227,12 @@ export default function ResponsiveDrawer() {
       >
         <Toolbar />
         <div style={{ flexGrow: 1 }}>
-          {currentScreen === "/logs" && <LogsDetail />}
+          {currentScreen === "/logs" && <LogDetail />}
           {currentScreen === "/" && <ContainerList containers={containers} />}
+          {currentScreen === "/clusters" && <ClusterList clusters={clusters} />}
+          {currentScreen === "/services" && (
+            <ServiceList containers={containers} />
+          )}
         </div>
       </Box>
     </Box>

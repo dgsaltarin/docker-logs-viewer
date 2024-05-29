@@ -13,6 +13,13 @@ export interface User {
 }
 
 export interface Service {
-  name: string;
-  id: number;
+  service_name: string;
+  service_arn: string;
+  tasks: Task[];
+}
+
+export interface Task {
+  task_id: number;
+  last_status: string;
+  started_at: string;
 }
