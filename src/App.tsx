@@ -1,9 +1,8 @@
 import firebase from "firebase/compat/app";
 import "./App.css";
-import ResponsiveDrawer from "./components/drawer";
-import Login from "./components/login";
+import { Drawer, Login } from "@components/index";
 import { useSelector } from "react-redux";
-import { RootState } from "./store/store";
+import { RootState } from "@store/store";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -18,7 +17,7 @@ function App() {
   firebase.initializeApp(firebaseConfig);
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
 
-  return <>{isLoggedIn ? <ResponsiveDrawer /> : <Login />}</>;
+  return <>{isLoggedIn ? <Drawer /> : <Login />}</>;
 }
 
 export default App;

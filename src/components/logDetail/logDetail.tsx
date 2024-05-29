@@ -4,9 +4,9 @@ import KeyboardReturnIcon from "@mui/icons-material/KeyboardReturn";
 import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
-import { setCurrentScreen } from "../store/slices/navigationSlice";
-import { AppDispatch } from "../store/store";
-import { RootState } from "../store/store";
+import { setCurrentScreen } from "@store/slices/navigationSlice";
+import { AppDispatch } from "@store/store";
+import { RootState } from "@store/store";
 
 const style = makeStyles(() => ({
   returnButton: {
