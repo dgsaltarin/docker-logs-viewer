@@ -11,8 +11,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
-import { login } from "@store/slices/loginSlice";
+import { login, setLoginInfo } from "@store/slices/loginSlice";
 import { AppDispatch } from "@store/store";
+import { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
 
 function Copyright(props: any) {
   return (
@@ -33,20 +35,34 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const cookie = new Cookies();
 
   const handleLogin = () => {
     dispatch(login({ email, password }));
   };
+
+  useEffect(() => {
+    const loginInfo = cookie.get("loginInfo");
+    console.log("loginInfo", loginInfo);
+    if (loginInfo) {
+      dispatch(setLoginInfo(loginInfo));
+    }
+    if (formSubmitted) {
+      handleLogin();
+    }
+  }, [email, password]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     setEmail(data.get("email") as string);
     setPassword(data.get("password") as string);
-    handleLogin();
+    setFormSubmitted(true);
   };
 
   return (

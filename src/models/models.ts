@@ -23,3 +23,9 @@ export interface Task {
   last_status: string;
   started_at: string;
 }
+
+export interface FirebaseResponse {
+  idToken: string;
+  refreshToken: string;
+  expiresIn: number;
+}

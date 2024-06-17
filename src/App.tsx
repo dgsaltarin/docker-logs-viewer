@@ -15,6 +15,7 @@ const firebaseConfig = {
 
 function App() {
   firebase.initializeApp(firebaseConfig);
+
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
 
   return <>{isLoggedIn ? <Drawer /> : <Login />}</>;

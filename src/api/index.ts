@@ -44,15 +44,13 @@ export const getServicesList = async (clusterName: string) => {
   const response: AxiosResponse = await axios.get(
     `${BASE_URL_DEV}/ecs_app/list_services/${clusterName}`,
   );
-  console.log(response.data);
   return response.data.services;
 };
 
 export const loginFirebase = async (email: string, password: string) => {
   const auth = getAuth();
-
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    return await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     return error;
   }
