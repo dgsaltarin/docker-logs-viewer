@@ -42,11 +42,7 @@ const ServiceCard: FC<ServiceCardProps> = ({ name, id }) => {
           ID: {id}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={handleGetLogs}>
-          View Logs
-        </Button>
-      </CardActions>
+      <CardActions></CardActions>
     </React.Fragment>
   );
 

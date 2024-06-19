@@ -26,7 +26,7 @@ const ServiceList: FC<{ services: Service[] }> = ({ services }) => {
     <Grid container spacing={2}>
       <Grid item className={classes.title} xs={12} md={12}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h4">
-          Containers
+          Services
         </Typography>
       </Grid>
       <Grid item xs={12} md={6} lg={12}>
