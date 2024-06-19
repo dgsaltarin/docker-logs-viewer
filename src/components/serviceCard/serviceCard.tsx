@@ -2,12 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@store/store";
-import { getDevContainerLog } from "@store/slices/logSlice";
-import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 
@@ -17,13 +12,6 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: FC<ServiceCardProps> = ({ name, id }) => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const handleGetLogs = () => {
-    dispatch(getDevContainerLog(name));
-    dispatch(setCurrentScreen("/logs"));
-  };
-
   const card = (
     <React.Fragment>
       <CardContent>
