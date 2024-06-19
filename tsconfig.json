@@ -22,7 +22,7 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
-      "@types/*": ["models/*"],
+      "@models/*": ["models/*"],
       "@store/*": ["store/*"],
       "@api/*": ["api/*"]
     }

@@ -1,6 +1,6 @@
-import { Service } from "../models";
+import { Service } from "@models/models";
 
-export interface AwsServices {
+export default interface AwsServices {
   services: Service[];
   loading: boolean;
   clusters: string[];

@@ -9,8 +9,14 @@ import { AppDispatch } from "@store/store";
 import { getDevContainerLog } from "@store/slices/logSlice";
 import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
+import { FC } from "react";
 
-export default function OutlinedCard({ name, id }) {
+interface OutlineCardProps {
+  name: string;
+  id: number;
+}
+
+const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleGetLogs = () => {
@@ -51,4 +57,6 @@ export default function OutlinedCard({ name, id }) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default OutlinedCard;

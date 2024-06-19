@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getDevContainerLogs, getQAContainerLogs } from "../../api/index";
+import { getDevContainerLogs, getQAContainerLogs } from "@api/index";
+import LogSliceProps from "@models/slices/logSliceProps";
 
 export const getDevContainerLog = createAsyncThunk(
   "container/getDevContainerLogs",

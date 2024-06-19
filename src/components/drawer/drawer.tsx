@@ -51,7 +51,9 @@ export default function ResponsiveDrawer() {
   const [isClosing, setIsClosing] = React.useState(false);
   const { currentScreen } = useSelector((state: RootState) => state.navigation);
   const classes = style();
-  const { clusters } = useSelector((state: RootState) => state.awsServices);
+  const { clusters, services } = useSelector(
+    (state: RootState) => state.awsServices,
+  );
 
   useEffect(() => {
     dispatch(getDevContainerList());
@@ -230,9 +232,7 @@ export default function ResponsiveDrawer() {
           {currentScreen === "/logs" && <LogDetail />}
           {currentScreen === "/" && <ContainerList containers={containers} />}
           {currentScreen === "/clusters" && <ClusterList clusters={clusters} />}
-          {currentScreen === "/services" && (
-            <ServiceList containers={containers} />
-          )}
+          {currentScreen === "/services" && <ServiceList services={services} />}
         </div>
       </Box>
     </Box>

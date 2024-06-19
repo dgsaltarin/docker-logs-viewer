@@ -9,8 +9,14 @@ import { AppDispatch } from "@store/store";
 import { getDevContainerLog } from "@store/slices/logSlice";
 import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
+import { FC } from "react";
 
-export default function ServiceCard({ name, id }) {
+interface ServiceCardProps {
+  name: string;
+  id: string;
+}
+
+const ServiceCard: FC<ServiceCardProps> = ({ name, id }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleGetLogs = () => {
@@ -51,4 +57,6 @@ export default function ServiceCard({ name, id }) {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default ServiceCard;

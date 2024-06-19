@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { FC } from "react";
-import { Container } from "@types/models";
+import { Container } from "@models/models";
 import { ContainerCard } from "@components/index";
 import { makeStyles } from "@mui/styles";
 

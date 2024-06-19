@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { FC } from "react";
-import { Service } from "@types";
+import { Service } from "@models/models";
 import { ServiceCard } from "@components/index";
 import { makeStyles } from "@mui/styles";
 
@@ -33,8 +33,11 @@ const ServiceList: FC<{ services: Service[] }> = ({ services }) => {
         <Demo>
           <List>
             {services.map((service: Service) => (
-              <ListItem key={service.id}>
-                <ServiceCard name={service.name} id={service.id} />
+              <ListItem key={service.service_arn}>
+                <ServiceCard
+                  name={service.service_name}
+                  id={service.service_arn}
+                />
               </ListItem>
             ))}
           </List>

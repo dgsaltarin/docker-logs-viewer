@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { login, setLoginInfo } from "@store/slices/loginSlice";
 import { AppDispatch } from "@store/store";
 import { useState, useEffect } from "react";
-import Cookies from "universal-cookie";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 function Copyright(props: any) {
   return (
@@ -40,18 +40,19 @@ export default function SignInSide() {
   const dispatch = useDispatch<AppDispatch>();
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const cookie = new Cookies();
+  const auth = getAuth();
 
   const handleLogin = () => {
     dispatch(login({ email, password }));
   };
 
   useEffect(() => {
-    const loginInfo = cookie.get("loginInfo");
-    console.log("loginInfo", loginInfo);
-    if (loginInfo) {
-      dispatch(setLoginInfo(loginInfo));
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        dispatch(setLoginInfo(user));
+      }
+    });
     if (formSubmitted) {
       handleLogin();
     }

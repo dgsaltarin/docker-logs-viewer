@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 
 const BASE_URL_DEV = import.meta.env.VITE_DEV_BASE_URL;
@@ -47,11 +47,15 @@ export const getServicesList = async (clusterName: string) => {
   return response.data.services;
 };
 
-export const loginFirebase = async (email: string, password: string) => {
+export const loginFirebase = async (
+  email: string,
+  password: string,
+): Promise<UserCredential> => {
   const auth = getAuth();
   try {
     return await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
-    return error;
+    console.log("error", error);
+    throw error;
   }
 };

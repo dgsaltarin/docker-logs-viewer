@@ -8,8 +8,7 @@ export interface Log {
 }
 
 export interface User {
-  email: string;
-  password: string;
+  email: string | null;
 }
 
 export interface Service {
