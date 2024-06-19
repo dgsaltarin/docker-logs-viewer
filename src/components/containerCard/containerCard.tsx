@@ -21,7 +21,7 @@ const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
 
   const handleGetLogs = () => {
     dispatch(getDevContainerLog(name));
-    dispatch(setCurrentScreen("/services"));
+    dispatch(setCurrentScreen("/logs"));
   };
 
   const card = (
