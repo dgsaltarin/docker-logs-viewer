@@ -7,3 +7,4 @@ export { default as LogDetail } from "./logDetail/logDetail";
 export { default as ClusterList } from "./clusterList/clusterList";
 export { default as ServiceList } from "./serviceList/serviceList";
 export { default as ServiceCard } from "./serviceCard/serviceCard";
+export { default as LoadigSpinner } from "./loading/loading";

@@ -23,7 +23,7 @@ export const getClusters = createAsyncThunk(
 
 const initialState: AwsServices = {
   services: [],
-  loading: false,
+  loadingServices: false,
   clusters: [],
 };
 
@@ -33,30 +33,30 @@ const awsServicesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAwsServices.pending, (state: AwsServices) => {
-      state.loading = true;
+      state.loadingServices = true;
     });
     builder.addCase(
       getAwsServices.fulfilled,
       (state: AwsServices, action: { payload: Service[] }) => {
-        state.loading = false;
+        state.loadingServices = false;
         state.services = action.payload;
       },
     );
     builder.addCase(getAwsServices.rejected, (state: AwsServices) => {
-      state.loading = false;
+      state.loadingServices = false;
     });
     builder.addCase(getClusters.pending, (state: AwsServices) => {
-      state.loading = true;
+      state.loadingServices = true;
     });
     builder.addCase(
       getClusters.fulfilled,
       (state: AwsServices, action: { payload: string[] }) => {
-        state.loading = false;
+        state.loadingServices = false;
         state.clusters = action.payload;
       },
     );
     builder.addCase(getClusters.rejected, (state: AwsServices) => {
-      state.loading = false;
+      state.loadingServices = false;
     });
   },
 });

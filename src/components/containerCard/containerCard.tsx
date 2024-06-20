@@ -5,11 +5,12 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@store/store";
+import { AppDispatch, RootState } from "@store/store";
 import { getDevContainerLog } from "@store/slices/logSlice";
 import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
 import { FC } from "react";
+import { LoadigSpinner } from "..";
 
 interface OutlineCardProps {
   name: string;
@@ -18,6 +19,7 @@ interface OutlineCardProps {
 
 const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { loading } = useSelector((state: RootState) => state.awsServices);
 
   const handleGetLogs = () => {
     dispatch(getDevContainerLog(name));
@@ -55,6 +57,7 @@ const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
       <Grid item xs={6} md={8} lg={12}>
         <Card variant="outlined">{card}</Card>
       </Grid>
+      {loading && <LoadigSpinner />}
     </Grid>
   );
 };

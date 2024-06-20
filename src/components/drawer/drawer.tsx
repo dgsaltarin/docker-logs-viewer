@@ -33,6 +33,7 @@ import {
   ContainerList,
   LogDetail,
   ServiceList,
+  LoadigSpinner,
 } from "@components/index";
 import { getClusters } from "@store/slices/awsServicesSlice";
 
@@ -46,12 +47,15 @@ const drawerWidth = 240;
 
 export default function ResponsiveDrawer() {
   const dispatch = useDispatch<AppDispatch>();
-  const { containers } = useSelector((state: RootState) => state.container);
+  const { containers, loading } = useSelector(
+    (state: RootState) => state.container,
+  );
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const { currentScreen } = useSelector((state: RootState) => state.navigation);
   const classes = style();
-  const { clusters, services } = useSelector(
+
+  const { clusters, services, loadingServices } = useSelector(
     (state: RootState) => state.awsServices,
   );
 
@@ -235,6 +239,8 @@ export default function ResponsiveDrawer() {
           {currentScreen === "/services" && <ServiceList services={services} />}
         </div>
       </Box>
+      {loading && <LoadigSpinner />}
+      {loadingServices && <LoadigSpinner />}
     </Box>
   );
 }

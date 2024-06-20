@@ -12,9 +12,11 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { login, setLoginInfo } from "@store/slices/loginSlice";
-import { AppDispatch } from "@store/store";
+import { AppDispatch, RootState } from "@store/store";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { LoadigSpinner } from "..";
+import { useSelector } from "react-redux";
 
 function Copyright(props: any) {
   return (
@@ -39,6 +41,7 @@ export default function SignInSide() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const { loading } = useSelector((state: RootState) => state.login);
 
   const auth = getAuth();
 
@@ -148,6 +151,7 @@ export default function SignInSide() {
             </Box>
           </Box>
         </Grid>
+        {loading && <LoadigSpinner />}
       </Grid>
     </ThemeProvider>
   );
