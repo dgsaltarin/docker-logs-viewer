@@ -52,7 +52,6 @@ export default function SignInSide() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         dispatch(setLoginInfo(user));
       }
     });

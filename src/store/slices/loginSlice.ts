@@ -39,7 +39,8 @@ const loginSlice = createSlice({
       state.user.email = action.payload;
     },
     logout: (state: LoginSliceProps) => {
-      localStorage.clear();
+      const auth = getAuth();
+      auth.signOut();
       state.isLoggedIn = false;
     },
     setLoginInfo: (state: LoginSliceProps, action: { payload: User }) => {
