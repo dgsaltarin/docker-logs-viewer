@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { LoadigSpinner } from "..";
 import { useSelector } from "react-redux";
+import { Alert } from "@mui/material";
 
 function Copyright(props: any) {
   return (
@@ -41,7 +42,7 @@ export default function SignInSide() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const { loading } = useSelector((state: RootState) => state.login);
+  const { loading, badLogin } = useSelector((state: RootState) => state.login);
 
   const auth = getAuth();
 
@@ -76,7 +77,7 @@ export default function SignInSide() {
           item
           xs={false}
           sm={4}
-          md={7}
+          md={6}
           sx={{
             backgroundImage:
               "url(https://source.unsplash.com/random?wallpapers)",
@@ -89,11 +90,11 @@ export default function SignInSide() {
             backgroundPosition: "center",
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square>
           <Box
             sx={{
               my: 8,
-              mx: 4,
+              mx: 6,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -131,6 +132,7 @@ export default function SignInSide() {
                 id="password"
                 autoComplete="current-password"
               />
+              {badLogin && <Alert severity="error">Invalid login</Alert>}
               <Button
                 type="submit"
                 fullWidth

@@ -4,6 +4,7 @@ interface LoginSliceProps {
   user: User;
   loading: boolean;
   isLoggedIn: boolean;
+  badLogin: boolean;
 }
 
 export default LoginSliceProps;

@@ -29,6 +29,7 @@ const initialState: LoginSliceProps = {
   user: { email: "" },
   loading: false,
   isLoggedIn: false,
+  badLogin: false,
 };
 
 const loginSlice = createSlice({
@@ -55,11 +56,13 @@ const loginSlice = createSlice({
     builder.addCase(login.fulfilled, (state: LoginSliceProps) => {
       state.loading = false;
       state.isLoggedIn = true;
+      state.badLogin = false;
       const auth = getAuth();
       setPersistence(auth, browserLocalPersistence);
     });
     builder.addCase(login.rejected, (state: LoginSliceProps) => {
       state.loading = false;
+      state.badLogin = true;
     });
   },
 });
