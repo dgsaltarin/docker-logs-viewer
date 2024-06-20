@@ -11,6 +11,7 @@ import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 import { LoadigSpinner } from "..";
+import { useSelector } from "react-redux";
 
 interface OutlineCardProps {
   name: string;
@@ -19,7 +20,9 @@ interface OutlineCardProps {
 
 const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading } = useSelector((state: RootState) => state.awsServices);
+  const { loadingServices } = useSelector(
+    (state: RootState) => state.awsServices,
+  );
 
   const handleGetLogs = () => {
     dispatch(getDevContainerLog(name));
@@ -57,7 +60,7 @@ const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
       <Grid item xs={6} md={8} lg={12}>
         <Card variant="outlined">{card}</Card>
       </Grid>
-      {loading && <LoadigSpinner />}
+      {loadingServices && <LoadigSpinner />}
     </Grid>
   );
 };
