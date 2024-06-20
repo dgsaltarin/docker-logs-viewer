@@ -8,6 +8,7 @@ export const getAwsServices = createAsyncThunk(
   "awsServices/getAwsServices",
   async (clusterName: string) => {
     const response = await getServicesList(clusterName);
+    console.log("response", response);
     return response;
   },
 );

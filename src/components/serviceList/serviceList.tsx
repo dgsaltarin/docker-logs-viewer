@@ -37,6 +37,7 @@ const ServiceList: FC<{ services: Service[] }> = ({ services }) => {
                 <ServiceCard
                   name={service.service_name}
                   id={service.service_arn}
+                  task={service.tasks[0]}
                 />
               </ListItem>
             ))}
