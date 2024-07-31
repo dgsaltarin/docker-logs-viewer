@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@store/store";
-import { getDevContainerLog } from "@store/slices/logSlice";
+import { getQaContainerLog } from "@store/slices/logSlice";
 import { setCurrentScreen } from "@store/slices/navigationSlice";
 import { Grid } from "@mui/material";
 import { FC } from "react";
@@ -25,7 +25,7 @@ const OutlinedCard: FC<OutlineCardProps> = ({ name, id }) => {
   );
 
   const handleGetLogs = () => {
-    dispatch(getDevContainerLog(name));
+    dispatch(getQaContainerLog(name));
     dispatch(setCurrentScreen("/logs"));
   };
 
