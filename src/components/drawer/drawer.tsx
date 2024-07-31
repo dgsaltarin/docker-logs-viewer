@@ -16,7 +16,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getDevContainerList,
   getQaContainerList,
   setCurrentEnvironment,
 } from "@store/slices/containerSlice";
