@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from "axios";
 import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
 import { getAuth } from "firebase/auth";
 
-const BASE_URL_DEV = import.meta.env.VITE_DEV_BASE_URL;
 const BASE_URL_QA = import.meta.env.VITE_QA_BASE_URL;
 
 export const getDevContainers = async () => {
@@ -42,7 +41,7 @@ export const getClusterList = async () => {
 
 export const getServicesList = async (clusterName: string) => {
   const response: AxiosResponse = await axios.get(
-    `${BASE_URL_DEV}/ecs_app/list_services/${clusterName}`,
+    `${BASE_URL_QA}/ecs_app/list_services/${clusterName}`,
   );
   return response.data.services;
 };
