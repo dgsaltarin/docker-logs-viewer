@@ -35,7 +35,7 @@ export const getQAContainerLogs = async (containerName: string) => {
 
 export const getClusterList = async () => {
   const response: AxiosResponse = await axios.get(
-    `${BASE_URL_DEV}/ecs_app/list_clusters/`,
+    `${BASE_URL_QA}/ecs_app/list_clusters/`,
   );
   return response.data.clusters;
 };

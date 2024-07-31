@@ -60,7 +60,7 @@ export default function ResponsiveDrawer() {
   );
 
   useEffect(() => {
-    dispatch(getDevContainerList());
+    dispatch(getQaContainerList());
   }, [dispatch]);
 
   const handleDrawerClose = () => {
@@ -86,12 +86,6 @@ export default function ResponsiveDrawer() {
     dispatch(setCurrentEnvironment("qa"));
   };
 
-  const handleDevContainerList = () => {
-    dispatch(getDevContainerList());
-    dispatch(setCurrentScreen("/"));
-    dispatch(setCurrentEnvironment("dev"));
-  };
-
   const handleClusterList = () => {
     dispatch(getClusters());
     dispatch(setCurrentScreen("/clusters"));
@@ -112,14 +106,6 @@ export default function ResponsiveDrawer() {
         </Typography>
       </ListSubheader>
       <List>
-        <ListItem key={"DEV"} disablePadding>
-          <ListItemButton onClick={handleDevContainerList}>
-            <ListItemIcon>
-              <FaDocker />
-            </ListItemIcon>
-            <ListItemText primary={"DEV"} />
-          </ListItemButton>
-        </ListItem>
         <ListItem key={"QA"} disablePadding>
           <ListItemButton onClick={handleQaContainerList}>
             <ListItemIcon>
@@ -129,6 +115,11 @@ export default function ResponsiveDrawer() {
           </ListItemButton>
         </ListItem>
         <Divider />
+        <ListSubheader>
+          <Typography variant="h6" component="div">
+            AWS Services
+          </Typography>
+        </ListSubheader>
         <List>
           <ListItem key={"ECS"} disablePadding>
             <ListItemButton onClick={handleClusterList}>
@@ -136,6 +127,14 @@ export default function ResponsiveDrawer() {
                 <FaAws />
               </ListItemIcon>
               <ListItemText primary={"ECS"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={"Parameter Store"} disablePadding>
+            <ListItemButton onClick={handleClusterList}>
+              <ListItemIcon>
+                <FaAws />
+              </ListItemIcon>
+              <ListItemText primary={"Parameter Store"} />
             </ListItemButton>
           </ListItem>
         </List>
